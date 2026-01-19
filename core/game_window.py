@@ -1,31 +1,29 @@
 import arcade
-from core.constants import SCREEN_WIDTH, SCREEN_HEIGHT, SCREEN_TITLE
+
 from scenes.menu_scene import MenuScene
+from scenes.exit_scene import ExitScene
+
 
 class GameWindow(arcade.Window):
-    def init(self):
-        super().init(SCREEN_WIDTH, SCREEN_HEIGHT, SCREEN_TITLE)
-        arcade.set_background_color((20, 20, 30))
+    def __init__(self):
+        super().__init__(800, 600, "Chrono Labyrinth")
 
         self.current_scene = None
         self.show_menu()
 
     def show_menu(self):
         self.current_scene = MenuScene(self)
+        self.show_view(self.current_scene)
 
     def show_game(self):
         from scenes.game_scene import GameScene
         self.current_scene = GameScene(self)
+        self.show_view(self.current_scene)
 
-    def on_draw(self):
-        arcade.start_render()
-        if self.current_scene:
-            self.current_scene.on_draw()
+    def show_exit(self):
+        self.current_scene = ExitScene(self)
+        self.show_view(self.current_scene)
 
-    def on_update(self, delta_time):
+    def on_update(self, delta_time: float):
         if self.current_scene:
             self.current_scene.on_update(delta_time)
-
-    def on_key_press(self, key, modifiers):
-        if self.current_scene:
-            self.current_scene.on_key_press(key, modifiers)

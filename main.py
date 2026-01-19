@@ -1,8 +1,12 @@
+import arcade
+
 from core.game_window import GameWindow
+
 
 def main():
     window = GameWindow()
-    window.run()
+    arcade.run()
 
-if name == "main":
+
+if __name__ == "__main__":
     main()

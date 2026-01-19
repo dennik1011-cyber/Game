@@ -1,12 +1,16 @@
-class BaseScene:
-    def init(self, window):
+import arcade
+
+
+class BaseScene(arcade.View):
+    def __init__(self, window):
+        super().__init__()
         self.window = window
 
+    def on_show_view(self):
+        arcade.set_background_color(arcade.color.BLACK)
+
     def on_draw(self):
-        pass
+        self.clear()
 
-    def on_update(self, delta_time):
-        pass
-
-    def on_key_press(self, key, modifiers):
+    def on_update(self, delta_time: float):
         pass
